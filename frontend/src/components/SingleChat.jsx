@@ -12,7 +12,7 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
-const ENDPOINT = "https://hike-q2y6.onrender.com"; //"http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+const ENDPOINT = "https://hike-messenger.onrender.com"; //"http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
