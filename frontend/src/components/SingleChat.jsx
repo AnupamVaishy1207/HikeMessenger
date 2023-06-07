@@ -12,7 +12,7 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
-const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+const ENDPOINT = "https://hike-q2y6.onrender.com"; //"http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -36,7 +36,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const { selectedChat, setSelectedChat, user, notification, setNotification } =
     ChatState();
 
-    // ======================useeffect ENDPOINT==========================
+  // ======================useeffect ENDPOINT==========================
   useEffect(() => {
     socket = io(ENDPOINT);
     socket.emit("setup", user);
@@ -47,9 +47,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     // eslint-disable-next-line
   }, []);
 
-
-    // ======================useeffect newMessageRecieved==========================
-
+  // ======================useeffect newMessageRecieved==========================
 
   useEffect(() => {
     socket.on("message recieved", (newMessageRecieved) => {
@@ -67,8 +65,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     });
   });
 
-    // ======================useeffect==========================
-
+  // ======================useeffect==========================
 
   // useEffect(() => {
   //   socket = io(ENDPOINT);
@@ -80,9 +77,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   //   // eslint-disable-next-line
   // }, []);
 
-
-    // ======================useeffect==========================
-
+  // ======================useeffect==========================
 
   useEffect(() => {
     fetchMessages();
@@ -90,7 +85,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     selectedChatCompare = selectedChat;
     // eslint-disable-next-line
   }, [selectedChat]);
-
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
@@ -124,7 +118,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }
   };
 
-  
   const sendMessage = async (event) => {
     if (event.key === "Enter" && newMessage) {
       socket.emit("stop typing", selectedChat._id);
@@ -158,10 +151,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       }
     }
   };
-
- 
-
-
 
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
@@ -253,13 +242,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               isRequired
               mt={3}
             >
-              {istyping ? (
-                <div>
-                 Typing...
-                </div>
-              ) : (
-                <></>
-              )}
+              {istyping ? <div>Typing...</div> : <></>}
               <Input
                 variant="filled"
                 bg="#E0E0E0"
@@ -272,7 +255,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         </>
       ) : (
         // to get socket.io on same page
-        <Box display="flex" alignItems="center" justifyContent="center" h="100%">
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          h="100%"
+        >
           <Text fontSize="3xl" pb={3} fontFamily="Work sans">
             Click on a user to start chatting
           </Text>
